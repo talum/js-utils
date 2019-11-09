@@ -22,13 +22,41 @@ function map(array, cb) {
 //console.log(myMap);
 
 function reduce(array, cb, accumulator=[]) {
+  for(let i = 0; i < array.length; i++) {
+    accumulator = cb(array[i], accumulator);
+  }
+  return accumulator;
 }
 
-function find() {
+//console.log('myReduce');
+//const myReduce = reduce(myArray, (el, accumulator) => {
+  //return accumulator * el * 2;
+//}, 1);
+//console.log(myReduce);
+
+function filter(array, condition) {
+  let results = [];
+  for (let i = 0; i < array.length; i++) {
+    if (typeof condition == 'function') {
+      if (condition(array[i])) {
+        results.push(array[i]);
+      }
+      // execute the function and compare
+    } else {
+      if (array[i] == condition) {
+        results.push(array[i]);
+      }
+    }
+  }
+  return results;
 }
 
-function filter() {
-}
+console.log('myFilter');
+//const myFilter = filter(myArray, (el) => {
+  //return el % 2 == 0;
+//});
+const myFilter = filter(myArray, 2);
+console.log(myFilter);
 
 function every() {
 }
